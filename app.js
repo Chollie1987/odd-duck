@@ -17,33 +17,64 @@ let votesList = document.getElementById('results-list');
 
 //-------Constructor Function------//
 
-function ( name, imageFile = 'jpg', imgFile) {
+function Products(name, imageFile = 'jpg', imgFile) {
     this.name = name;
     this.image = `img/${name}.${imageFile}`;
-    this.votes = 0 
+    this.votes = 0
 
 
     state.allProductsArray.push(this);
 }
 
-let bag = new product('bag');
-let banana = new product('banana');
-let bathroom = new product('bathroom');
-let boots = new product('boots');
-let breakfast = new product('breakfast');
-let bubblegum = new product('bubblegum');
-let chair = new product('chair');
-let cthulhu = new product('cthulhu');
-let dogDuck = new product('dog-duck');
-let dragon = new product('dragon');
-let pen = new product('pen');
-let petSweep = new product('pet-sweep');
-let scissors = new product('scissors');
-let shark = new product('shark');
-let sweep = new product('sweep');
-let tauntaun = new product('tauntaun');
-let unicorn = new product('unicorn');
-let waterCan = new product('water-can');
-let wineGlass = new product('wine-glass');
+let bag = new Products('bag');
+let banana = new Products('banana');
+let bathroom = new Products('bathroom');
+let boots = new Products('boots');
+let breakfast = new Products('breakfast');
+let bubblegum = new Products('bubblegum');
+let chair = new Products('chair');
+let cthulhu = new Products('cthulhu');
+let dogDuck = new Products('dog-duck');
+let dragon = new Products('dragon');
+let pen = new Products('pen');
+let petSweep = new Products('pet-sweep');
+let scissors = new Products('scissors');
+let shark = new Products('shark');
+let sweep = new Products('sweep');
+let tauntaun = new Products('tauntaun');
+let unicorn = new Products('unicorn');
+let waterCan = new Products('water-can');
+let wineGlass = new Products('wine-glass');
 
 console.log(state.allProductsArray);
+
+//--------Functions------//
+
+function getRandomIndex() {
+    return Math.floor(Math.random() * state.allProductsArray.length);
+}
+
+function renderImg() {
+
+    let indexOne = getRandomIndex();
+    let indexTwo = getRandomIndex();
+    let indexThree = getRandomIndex();
+
+
+
+}
+
+imgOne.src = state.allProductsArray[0].photo;
+imgTwo.src = state.allProductsArray[1].photo;
+imgThree.src = state.allProductsArray[2].photo;
+
+
+//------------Event Handler-------//
+
+function handleClick(event) {
+    votesCounted--;
+
+    let imgClicked = event.target.alt;
+}
+
+renderImg();
