@@ -19,8 +19,9 @@ let votesList = document.getElementById('results-list');
 
 function Products(name, imageFile = 'jpg', imgFile) {
     this.name = name;
-    this.image = `img/${name}.${imageFile}`;
-    this.votes = 0
+    this.votes = 0;
+    this.views = 0;
+    this.image = `./img/${name}.${imageFile}`;
 
 
     state.allProductsArray.push(this);
@@ -40,7 +41,7 @@ let pen = new Products('pen');
 let petSweep = new Products('pet-sweep');
 let scissors = new Products('scissors');
 let shark = new Products('shark');
-let sweep = new Products('sweep');
+// let sweep = new Products('sweep', );
 let tauntaun = new Products('tauntaun');
 let unicorn = new Products('unicorn');
 let waterCan = new Products('water-can');
@@ -55,26 +56,76 @@ function getRandomIndex() {
 }
 
 function renderImg() {
-
+    
     let indexOne = getRandomIndex();
     let indexTwo = getRandomIndex();
     let indexThree = getRandomIndex();
 
-
+    while(indexOne === indexTwo){
+        indexTwo = getRandomIndex();
+    while(indexTwo === indexThree){
+        indexThree = getRandomIndex();
+    while(indexThree === indexOne){
+        indexOne = getRandomIndex();
+    }
+    }
+    }
+    imgOne.src = state.allProductsArray[indexOne].image;
+    imgOne.alt = state.allProductsArray[indexOne].name;
+    state.allProductsArray[indexOne].views++;
+    
+    imgTwo.src = state.allProductsArray[indexTwo].image;
+    imgTwo.alt = state.allProductsArray[indexTwo].name;
+    state.allProductsArray[indexTwo].views++;
+    
+    imgThree.src = state.allProductsArray[indexThree].image;
+    imgThree.alt = state.allProductsArray[indexThree].name;
+    state.allProductsArray[indexThree].views++;
 
 }
-
-imgOne.src = state.allProductsArray[0].photo;
-imgTwo.src = state.allProductsArray[1].photo;
-imgThree.src = state.allProductsArray[2].photo;
+// console.log(state.allProductsArray[indexOne].image);
+// console.log(indexOne)
+// console.log(state.allProductsArray[16].image);
 
 
 //------------Event Handler-------//
 
 function handleClick(event) {
-    votesCounted--;
+    console.log(event.target);
+    votes--;
 
     let imgClicked = event.target.alt;
+    for(let i = 0; i < state.allProductsArray.length; i++){
+        if(imgClicked === state.allProductsArray[i].name){
+            console.log(imgClicked,state.allProductsArray[i].name);
+            state.allProductsArray[i].votes++
+        
+        }
+    }
+    if(votes === 0){
+        imgContainer.removeEventListener('click', handleClick);
+    }
+renderImg();
 }
+
+
+
+//-----------Results Function---------//
+
+function handleResults(){
+    console.log(votes);
+    if(votes === 0){
+        for(let i = 0; i < state.allProductsArray.length; i++){
+            let liElement = document.createElement('li');
+             liElement.textContent = `${state.allProductsArray[i].name} was shown ${state.allProductsArray[i].views} and had ${state.allProductsArray[i].votes} votes`
+            votesList.append(liElement);
+        }
+    }
+}
+
+//----------- Event listener----------//
+
+imgContainer.addEventListener('click', handleClick);
+votesButton.addEventListener('click', handleResults);
 
 renderImg();
