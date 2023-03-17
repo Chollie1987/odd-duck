@@ -1,55 +1,79 @@
 body {
-background-color:#64CEAA ;
+background-color:#b0c1ef;
+border: 5px solid #021B38;
+border-radius: 10px;
+
 }
 
-h1 {
-    font-size: larger;
+header {
+    color:#021B38;
+    padding-bottom: 200px;
+    font-size: xx-large;
     text-align: center;
     font-weight: 900;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-#products-grid{
-    width: 100%;
-    margin: 25px auto;
-    display: grid;
-    grid-template-columns: 3fr repeat(3, 2fr);
-    grid-template-rows: 2fr 4fr 0fr 3fr;
-    grid-column-gap: 1px;
-    grid-row-gap: 1px;
-}
 
-#title {
-    grid-area: 1 / 1 / 2 / 5;
-}    
 
 #results-list {
-    grid-area: 2 / 1 / 3 / 2;
+    color: #021B38;
+    font-weight: 600;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #021B38;
 }
 
-#img-one {
-    border: 3px solid black;
+.product-grid {
+    display: grid;
+        grid-template-columns: 1fr 3fr;
+        grid-template-rows: .5fr 1.5fr 1fr .5fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+     
+     
+}
+#images {
+   display: flex;
+
+}
+#products img {
+    margin-top: 200px;
+    margin: 10px;
+    width: 200px;
+    height: 210px;
+    border: 2px solid #021B38;
     border-radius: 8px;
-    width: 50%;
+}
+
+/* #img-one {
+    width: 200px;
     height: auto;
-    grid-area: 2 / 2 / 3 / 3;
+  
 }
 
 #img-two {
-    border: 3px solid black;
+    border: 2px solid #021B38;
     border-radius: 8px;
-    width: 50%;
+    width: 200px;
     height: auto;
-    grid-area: 2 / 3 / 3 / 4;
+    
 }
-
 #img-three {
-    border: 3px solid black;
+    border: 2px solid #021B38;
     border-radius: 8px;
-    width: 50%;
+    width: 200px;
     height: auto;
-    grid-area: 2 / 4 / 3 / 5;
+   
+} */
+
+#votes-div {
+    text-align: center;
+    color: #021B38;
 }
 
-#votes-button {
-    grid-area: 4 / 1 / 5 / 5;
+button:hover {
+    
+    background-color: #021B38;
+    color: whitesmoke;
+    border-radius: 20px;
+    transition: 2ms;
 }

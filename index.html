@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,27 +9,35 @@
     <link rel="stylesheet" href="styles.css">
     <title>Document</title>
 </head>
+
 <body>
-    <div id="products-grid">
-        <header>
-            <div id="title">
-                <h1>Choose a Product</h1>
+    <header>
+        <h1>Choose a Product</h1>
+    </header>
+    <div class="product-grid">
+        <section id="results-list">Results List</section>
+        <section id="products">
+            <div id="images">
+                <img id="img-one">
+                <img id="img-two">
+                <img id="img-three">
             </div>
-        </header>
-        <ul>
-        <div id="results-list"> </div>
-        </ul>
-          <section id="products">
-            <img id="img-one">
-            <img id="img-two">
-            <img id="img-three">
-          </section>
-          <br/>
-        <section>
-          <div id="votes-button"><button>Results</button>
-          </div>
+            <div id="votes-div">
+                <button id="votes-button">Results</button>
+            </div>
         </section>
+        <div>
+            <canvas id="resultsChart"></canvas>
+        </div>
+        <section>
+        </section>
+        <!-- <br /> -->
+        <ul>
+            <div id="results-list"> </div>
+        </ul>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="app.js"></script>
+
 </html>

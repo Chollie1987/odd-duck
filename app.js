@@ -14,6 +14,7 @@ let imgTwo = document.getElementById('img-two');
 let imgThree = document.getElementById('img-three');
 let votesButton = document.getElementById('votes-button');
 let votesList = document.getElementById('results-list');
+const ctx = document.getElementById('resultsChart');
 
 //-------Constructor Function------//
 
@@ -47,6 +48,7 @@ let unicorn = new Products('unicorn');
 let waterCan = new Products('water-can');
 let wineGlass = new Products('wine-glass');
 
+
 console.log(state.allProductsArray);
 
 //--------Functions------//
@@ -60,15 +62,15 @@ function renderImg() {
     let indexOne = getRandomIndex();
     let indexTwo = getRandomIndex();
     let indexThree = getRandomIndex();
-
+    
     while(indexOne === indexTwo){
         indexTwo = getRandomIndex();
-    while(indexTwo === indexThree){
-        indexThree = getRandomIndex();
-    while(indexThree === indexOne){
-        indexOne = getRandomIndex();
-    }
-    }
+        while(indexTwo === indexThree){
+            indexThree = getRandomIndex();
+            while(indexThree === indexOne){
+                indexOne = getRandomIndex();
+            }
+        }
     }
     imgOne.src = state.allProductsArray[indexOne].image;
     imgOne.alt = state.allProductsArray[indexOne].name;
@@ -81,6 +83,43 @@ function renderImg() {
     imgThree.src = state.allProductsArray[indexThree].image;
     imgThree.alt = state.allProductsArray[indexThree].name;
     state.allProductsArray[indexThree].views++;
+    
+};
+
+//------------Function Chart--------//
+
+function renderChart(){
+
+    ctx.style.display = 'block';
+    let productNames = [];
+    let productVotes = [];
+
+    for(let i =0; i < state.allProductsArray.length; i++) {
+        productNames.push(state.allProductsArray[i].name);
+        productVotes.push(state.allProductsArray[i].votes);
+    }
+
+    let resultsChart = {
+        type: 'bar',
+        data: {
+        labels: productNames,
+            datasets: [{
+                label: '# of Votes',
+                data: productVotes,
+                borderWidth: 1
+            }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+}
+
+    new Chart(ctx, resultsChart);
+        
 
 }
 // console.log(state.allProductsArray[indexOne].image);
@@ -120,6 +159,8 @@ function handleResults(){
              liElement.textContent = `${state.allProductsArray[i].name} was shown ${state.allProductsArray[i].views} and had ${state.allProductsArray[i].votes} votes`
             votesList.append(liElement);
         }
+        votesButton.style.display = 'none';
+        renderChart();
     }
 }
 
