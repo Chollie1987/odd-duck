@@ -93,10 +93,12 @@ function renderChart(){
     ctx.style.display = 'block';
     let productNames = [];
     let productVotes = [];
+    let productViews = [];
 
     for(let i =0; i < state.allProductsArray.length; i++) {
         productNames.push(state.allProductsArray[i].name);
         productVotes.push(state.allProductsArray[i].votes);
+        productViews.push(state.allProductsArray[i].views);
     }
 
     let resultsChart = {
@@ -107,7 +109,11 @@ function renderChart(){
                 label: '# of Votes',
                 data: productVotes,
                 borderWidth: 1
-            }]
+             },
+               { label: '# of Views',
+                 data: productVotes,
+                 borderWidth: 1}
+            ]
     },
     options: {
         scales: {
