@@ -26,8 +26,16 @@ function Products(name, imageFile = 'jpg', imgFile) {
 
 
     state.allProductsArray.push(this);
-}
+};
 
+//---------Retrieved from local storage-------//
+let retrievedProducts = localStorage.getItem('products');
+
+let parsedProducts = JSON.parse(retrievedProducts);
+
+if(retrievedProducts){
+    state.allProductsArray = parsedProducts;
+} else {
 let bag = new Products('bag');
 let banana = new Products('banana');
 let bathroom = new Products('bathroom');
@@ -42,12 +50,12 @@ let pen = new Products('pen');
 let petSweep = new Products('pet-sweep');
 let scissors = new Products('scissors');
 let shark = new Products('shark');
-// let sweep = new Products('sweep', );
+let sweep = new Products('sweep', 'png');
 let tauntaun = new Products('tauntaun');
 let unicorn = new Products('unicorn');
 let waterCan = new Products('water-can');
 let wineGlass = new Products('wine-glass');
-
+}
 
 console.log(state.allProductsArray);
 
@@ -149,6 +157,12 @@ function handleClick(event) {
     }
     if(votes === 0){
         imgContainer.removeEventListener('click', handleClick);
+
+//-------------Added to localStorage--------//
+
+        let stringifiedProducts = JSON.stringify(state.allProductsArray);
+
+        localStorage.setItem('products', stringifiedProducts);
     }
 renderImg();
 }
