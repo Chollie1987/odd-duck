@@ -6,6 +6,9 @@ let votes = 25;
 
 let state = {
     allProductsArray: [],
+
+    imgProducts: [],
+
 };
 
 let imgContainer = document.getElementById('products');
@@ -67,19 +70,19 @@ function getRandomIndex() {
 
 function renderImg() {
     
-    let indexOne = getRandomIndex();
-    let indexTwo = getRandomIndex();
-    let indexThree = getRandomIndex();
-    
-    while(indexOne === indexTwo){
-        indexTwo = getRandomIndex();
-        while(indexTwo === indexThree){
-            indexThree = getRandomIndex();
-            while(indexThree === indexOne){
-                indexOne = getRandomIndex();
-            }
-        }
+    while(state.imgProducts.length < 6){
+    let randomImg = getRandomIndex();
+    if (!state.imgProducts.includes(randomImg)){
+        state.imgProducts.push(randomImg);
     }
+
+
+    }
+    console.log(state.imgProducts);
+    let indexOne = state.imgProducts.shift();
+    let indexTwo = state.imgProducts.shift();
+    let indexThree = state.imgProducts.shift();
+    
     imgOne.src = state.allProductsArray[indexOne].image;
     imgOne.alt = state.allProductsArray[indexOne].name;
     state.allProductsArray[indexOne].views++;
@@ -119,7 +122,7 @@ function renderChart(){
                 borderWidth: 1
              },
                { label: '# of Views',
-                 data: productVotes,
+                 data: productViews,
                  borderWidth: 1}
             ]
     },
